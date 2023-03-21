@@ -33,6 +33,7 @@ const FormPersonalData = () => {
           type="text"
           id="nombre"
           name="nombre"
+          placeholder="Ej. Jane"
           value={formulario.nombre}
           onChange={handleChange}
         />
@@ -42,6 +43,7 @@ const FormPersonalData = () => {
           type="text"
           id="apellido"
           name="apellido"
+          placeholder="Ej. Doe"
           value={formulario.apellido}
           onChange={handleChange}
         />
@@ -51,6 +53,7 @@ const FormPersonalData = () => {
           type="email"
           id="correo"
           name="correo"
+          placeholder="Ej.janedoe@comfama.com.co"
           value={formulario.correo}
           onChange={handleChange}
         />

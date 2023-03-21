@@ -33,6 +33,7 @@ const Mas = () => {
           type="text"
           id="NivelDeConfianza"
           name="NivelDeConfianza"
+          placeholder="Ej. 95%"
           value={mas.NivelDeConfianza}
           onChange={handleChange}
         />
@@ -42,6 +43,7 @@ const Mas = () => {
           type="text"
           id="ProbabilidadDeExito"
           name="ProbabilidadDeExito"
+          placeholder="Ej. 50%"
           value={mas.ProbabilidadDeExito}
           onChange={handleChange}
         />
@@ -51,6 +53,7 @@ const Mas = () => {
           type="text"
           id="ErrorDeEstimacion"
           name="ErrorDeEstimacion"
+          placeholder="Ej. 5%"
           value={mas.ErrorDeEstimacion}
           onChange={handleChange}
         />
@@ -71,7 +74,6 @@ const Mas = () => {
             </p>
           </div>
         )}
-
       </form>
     </div>
   );
