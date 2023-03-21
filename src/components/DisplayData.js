@@ -4,6 +4,7 @@ import EstimadoresMas from "./Muestras/EstimadoresMas";
 import Mpe from "./Muestras/Mpe";
 import EstimadoresMpe from "./Muestras/EstimadoresMpe";
 import NoOption from "./Muestras/NoOption";
+import GraphAndData from "./GraphAndData";
 
 const DisplayData = () => {
   let componente = null;
@@ -32,19 +33,24 @@ const DisplayData = () => {
 
   return (
     <div>
-      <select
-        id="seleccion"
-        name="seleccion"
-        value={formulario.seleccion}
-        onChange={handleChange}
-      >
-        <option value="">Seleccione que le gustaria hacer</option>
-        <option value="mas">Muestra Aleatoria Simple</option>
-        <option value="emas">Estimadores de Muestra Aleatoria Simple</option>
-        <option value="mpe">Muestra por Estrato</option>
-        <option value="empe">Estimadores de Muestra por Estrato</option>
-      </select>
-      {componente}
+      <section>
+        <select
+          id="seleccion"
+          name="seleccion"
+          value={formulario.seleccion}
+          onChange={handleChange}
+        >
+          <option value="">Seleccione que le gustaria hacer</option>
+          <option value="mas">Muestra Aleatoria Simple</option>
+          <option value="emas">Estimadores de Muestra Aleatoria Simple</option>
+          <option value="mpe">Muestra por Estrato</option>
+          <option value="empe">Estimadores de Muestra por Estrato</option>
+        </select>
+
+        {componente}
+      </section>
+
+      <GraphAndData />
     </div>
   );
 };

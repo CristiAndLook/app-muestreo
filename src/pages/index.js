@@ -1,6 +1,7 @@
 import DisplayData from "@/components/DisplayData";
 
 function App() {
+
   return (
     <div>
       <p>Header</p>
@@ -10,7 +11,7 @@ function App() {
       <section>
         <DisplayData />
       </section>
-
+     
       <p>Footer</p>
     </div>
   );

@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import Data from "../Data/DataMas";
 
-const Mas = (formulario) => {
-
-  const [submitClicked, setSubmitClicked] = useState(false);
+function Mas() {
   const [mas, setMas] = useState({
     nombre: "",
     apellido: "",
@@ -13,87 +12,77 @@ const Mas = (formulario) => {
     ErrorDeEstimacion: "",
   });
 
-  const handleChange = (event) => {
-    setMas({
-      ...mas,
-      [event.target.name]: event.target.value,
-    });
+  const onChange = (event) => {
+    setMas({ ...mas, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Agrega aquí la lógica necesaria para enviar los datos a través de una solicitud HTTP.
+    // Aquí podrías hacer alguna validación o manipulación de los datos antes de enviarlos al componente Data
+    // Luego los enviamos al componente Data como propiedades}
     console.log(mas);
-    setSubmitClicked(true);
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="nombre">Nombre:</label>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Nombre:
         <input
           type="text"
-          id="nombre"
+          value={mas.nombre}
           name="nombre"
-          placeholder="Ej. Jane"
-          value={formulario.nombre}
-          onChange={handleChange}
+          onChange={onChange}
         />
-
-        <label htmlFor="apellido">Apellido:</label>
+      </label>
+      <label>
+        Apellido:
         <input
           type="text"
-          id="apellido"
+          value={mas.apellido}
           name="apellido"
-          placeholder="Ej. Doe"
-          value={formulario.apellido}
-          onChange={handleChange}
+          onChange={onChange}
         />
-
-        <label htmlFor="correo">Correo:</label>
+      </label>
+      <label>
+        Correo:
         <input
-          type="text"
-          id="correo"
+          type="email"
+          value={mas.correo}
           name="correo"
-          placeholder="Ej. janedoe@comfama.com.co"
-          value={formulario.correo}
-          onChange={handleChange}
+          onChange={onChange}
         />
-
-        <label htmlFor="NivelDeConfianza">Nivel de confianza:</label>
+      </label>
+      <label>
+        Nivel de Confianza:
         <input
-          type="text"
-          id="NivelDeConfianza"
-          name="NivelDeConfianza"
-          placeholder="Ej. 95%"
+          type="number"
           value={mas.NivelDeConfianza}
-          onChange={handleChange}
+          name="NivelDeConfianza"
+          onChange={onChange}
         />
-
-        <label htmlFor="ProbabilidadDeExito">Probabilidad de éxito:</label>
+      </label>
+      <label>
+        Probabilidad de Éxito:
         <input
-          type="text"
-          id="ProbabilidadDeExito"
-          name="ProbabilidadDeExito"
-          placeholder="Ej. 50%"
+          type="number"
           value={mas.ProbabilidadDeExito}
-          onChange={handleChange}
+          name="ProbabilidadDeExito"
+          onChange={onChange}
         />
-
-        <label htmlFor="ErrorDeEstimacion">Error de estimación:</label>
+      </label>
+      <label>
+        Error de Estimación:
         <input
-          type="text"
-          id="ErrorDeEstimacion"
-          name="ErrorDeEstimacion"
-          placeholder="Ej. 5%"
+          type="number"
           value={mas.ErrorDeEstimacion}
-          onChange={handleChange}
+          name="ErrorDeEstimacion"
+          onChange={onChange}
         />
-
-        <button type="submit">Obtener Muestra</button>
-      </form>
-    </div>
+      </label>
+      <button type="submit">Enviar</button>
+      {false && <Data {...mas} />}
+    </form>
   );
-};
+}
 
 export default Mas;
