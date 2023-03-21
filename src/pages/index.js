@@ -1,19 +1,14 @@
-import Seleccion from "@/components/Muestras/Seleccion";
-import FormPersonalData from "@/components/FormPersonalData";
+import DisplayData from "@/components/DisplayData";
 
 function App() {
   return (
     <div>
       <p>Header</p>
+
       <h1>Generador de Muestras</h1>
-      <section>
-        <h2>Ficha Técnica</h2>
-        <FormPersonalData />
-        <Seleccion />
-      </section>
 
       <section>
-        <h2>Graph</h2>
+        <DisplayData />
       </section>
 
       <p>Footer</p>

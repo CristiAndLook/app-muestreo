@@ -1,9 +1,13 @@
 import React from "react";
 import { useState } from "react";
 
-const Mas = () => {
+const Mas = (formulario) => {
+
   const [submitClicked, setSubmitClicked] = useState(false);
   const [mas, setMas] = useState({
+    nombre: "",
+    apellido: "",
+    correo: "",
     NivelDeConfianza: "",
     ProbabilidadDeExito: "",
     ErrorDeEstimacion: "",
@@ -25,9 +29,37 @@ const Mas = () => {
 
   return (
     <div>
-      <h2>Método Muestra Aleatoria Simple</h2>
-      <h4>Ingrese los datos</h4>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="nombre">Nombre:</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Ej. Jane"
+          value={formulario.nombre}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="apellido">Apellido:</label>
+        <input
+          type="text"
+          id="apellido"
+          name="apellido"
+          placeholder="Ej. Doe"
+          value={formulario.apellido}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="correo">Correo:</label>
+        <input
+          type="text"
+          id="correo"
+          name="correo"
+          placeholder="Ej. janedoe@comfama.com.co"
+          value={formulario.correo}
+          onChange={handleChange}
+        />
+
         <label htmlFor="NivelDeConfianza">Nivel de confianza:</label>
         <input
           type="text"
@@ -59,21 +91,6 @@ const Mas = () => {
         />
 
         <button type="submit">Obtener Muestra</button>
-
-        {submitClicked && (
-          <div>
-            <h4>Resultados</h4>
-            <p>
-              <strong>Nivel de confianza:</strong> {mas.NivelDeConfianza}
-            </p>
-            <p>
-              <strong>Probabilidad de éxito:</strong> {mas.ProbabilidadDeExito}
-            </p>
-            <p>
-              <strong>Error de estimación:</strong> {mas.ErrorDeEstimacion}
-            </p>
-          </div>
-        )}
       </form>
     </div>
   );
