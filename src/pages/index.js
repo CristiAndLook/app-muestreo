@@ -1,3 +1,4 @@
+import Seleccion from "@/components/Muestras/Seleccion";
 import PersonalData from "@/components/PersonalData";
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
     <div>
       <h1>Generador de Muestras</h1>
       <PersonalData />
+      <Seleccion />
     </div>
   );
 }
