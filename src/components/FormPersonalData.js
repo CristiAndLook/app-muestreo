@@ -2,7 +2,7 @@ import { useState } from "react";
 import ExcelImport from "./ExcelImport";
 import Seleccion from "./Muestras/Seleccion";
 
-const PersonalData = () => {
+const FormPersonalData = () => {
   const [submitClicked, setSubmitClicked] = useState(false);
   const [formulario, setFormulario] = useState({
     nombre: "",
@@ -55,18 +55,18 @@ const PersonalData = () => {
           onChange={handleChange}
         />
 
-        <label htmlFor="seleccion">Seleccione una opción:</label>
+        <label htmlFor="seleccion"></label>
         <select
           id="seleccion"
           name="seleccion"
           value={formulario.seleccion}
           onChange={handleChange}
         >
-          <option value="">Seleccione una opción</option>
+          <option value="">Seleccione que le gustaria hacer</option>
           <option value="mas">Muestra Aleatoria Simple</option>
-          <option value="emas">Estimadores de muestra aleatoria simple</option>
-          <option value="mpe">Muestra por estrato</option>
-          <option value="empe">Estimadores de muestra por estrato</option>
+          <option value="emas">Estimadores de Muestra Aleatoria Simple</option>
+          <option value="mpe">Muestra por Estrato</option>
+          <option value="empe">Estimadores de Muestra por Estrato</option>
         </select>
 
         <ExcelImport />
@@ -79,4 +79,4 @@ const PersonalData = () => {
   );
 };
 
-export default PersonalData;
+export default FormPersonalData;
