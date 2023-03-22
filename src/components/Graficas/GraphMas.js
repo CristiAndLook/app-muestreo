@@ -1,9 +1,7 @@
 import React from "react";
-import ExcelImport from "./ExcelImport";
+import ExcelImport from "../Documentation/ExcelImport";
 const GraphMas = () => {
-  return <div>
-    <ExcelImport />
-  </div>;
+  return <div>Graph</div>;
 };
 
 export default GraphMas;

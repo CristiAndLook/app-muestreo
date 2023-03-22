@@ -45,8 +45,6 @@ const DisplayData = () => {
     document.getElementById("fileInput").click();
   };
 
-  console.log(dataArray);
-
   //Selección Tipo de Muestra
   let componente = null;
   const [select, setSelect] = useState({

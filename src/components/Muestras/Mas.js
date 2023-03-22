@@ -3,7 +3,7 @@ import { useState } from "react";
 import Data from "../Data/DataMas";
 
 function Mas({ dataArray }) {
-  console.log(dataArray);
+  // console.log(dataArray);
 
   const [mas, setMas] = useState({
     nombre: "",
