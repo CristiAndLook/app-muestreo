@@ -10,6 +10,7 @@ const DisplayData = () => {
   //Carga de archivo
   const [file, setFile] = useState(null);
   const [hasFile, setHasFile] = useState(false);
+  const [dataArray, setDataArray] = useState([]);
 
   const handleDrop = (event) => {
     event.preventDefault();
@@ -34,7 +35,8 @@ const DisplayData = () => {
       const data = new Uint8Array(event.target.result);
       const workbook = XLSX.read(data, { type: "array" });
       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-      console.log(XLSX.utils.sheet_to_json(worksheet, { header: 1 }));
+      const dataArray = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      setDataArray(dataArray);
     };
     reader.readAsArrayBuffer(newFile);
   };
@@ -42,6 +44,8 @@ const DisplayData = () => {
   const handleButtonClick = () => {
     document.getElementById("fileInput").click();
   };
+
+  console.log(dataArray);
 
   //Selección Tipo de Muestra
   let componente = null;
@@ -59,7 +63,7 @@ const DisplayData = () => {
   if (select.seleccion === "") {
     componente = <NoOption />;
   } else if (select.seleccion === "mas") {
-    componente = <Mas />;
+    componente = <Mas dataArray={dataArray} />;
   } else if (select.seleccion === "emas") {
     componente = <EstimadoresMas />;
   } else if (select.seleccion === "mpe") {
