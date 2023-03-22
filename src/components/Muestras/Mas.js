@@ -79,7 +79,7 @@ function Mas() {
           onChange={onChange}
         />
       </label>
-      <button type="submit">Enviar</button>
+      <button type="submit">Obtener Muestra</button>
       {false && <Data {...mas} />}
     </form>
   );
