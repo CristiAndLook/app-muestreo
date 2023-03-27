@@ -47,15 +47,21 @@ const DisplayData = () => {
 
   //Selección Tipo de Muestra
   let componente = null;
-  const [select, setSelect] = useState({
-    seleccion: "",
-  });
+  const [select, setSelect] = useState(
+    {
+      seleccion: "",
+    },
+    [dataArray]
+  );
 
   const handleChange = (event) => {
-    setSelect({
-      ...select,
-      [event.target.name]: event.target.value,
-    });
+    setSelect(
+      {
+        ...select,
+        [event.target.name]: event.target.value,
+      },
+      [dataArray]
+    );
   };
 
   if (select.seleccion === "") {
