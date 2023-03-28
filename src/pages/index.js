@@ -1,9 +1,9 @@
 import DisplayData from "@/components/DisplayData";
 
 function App() {
-
   return (
     <div>
+      
       <p>Header</p>
 
       <h1>Generador de Muestras</h1>
