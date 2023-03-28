@@ -5,7 +5,7 @@ import GraphMas from "../Graficas/GraphMas";
 
 function Mas({ dataArray }) {
   const [hasData, setHasData] = useState(false);
-
+  
   const [mas, setMas] = useState({
     nombre: "",
     apellido: "",
@@ -14,6 +14,7 @@ function Mas({ dataArray }) {
     NivelDeConfianza: "",
     ProbabilidadDeExito: "",
     ErrorDeEstimacion: "",
+    data: dataArray,
   });
 
   const onChange = (event) => {
