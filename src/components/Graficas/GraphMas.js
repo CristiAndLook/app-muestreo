@@ -1,21 +1,38 @@
 import React from "react";
 
 const GraphMas = (mas) => {
+  //Tamano del array
+  const arraySize = mas.data.length - 1;
+  //Nuevo Array de 1 a n
+  const arr = Array.from({length: arraySize}, (_, i) => i + 1);
+  //Data
   let data = mas.data;
+  //Media de la data
+  const media = parseInt((arraySize) / 2);
   //Desviación estándar con el index de la data
   const desviacionEst = (data) => {
-    const media = parseInt(data.length / 2);
     let desviacion = 0;
     let desviacionEstandar = 0;
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < arraySize; i++) {
       desviacion += Math.pow(data.indexOf(data[i]) - media, 2);
     }
-    desviacionEstandar = Math.sqrt(desviacion / data.length);
+    desviacionEstandar = Math.sqrt(desviacion / arraySize);
     return desviacionEstandar;
   };
 
+  //Función de distribución normal
+  const normDist = (valores, media, desviacionEstandar) => {
+    return valores.map((x) => {
+      const num = Math.exp(
+        -((x - media) ** 2) / (2 * desviacionEstandar ** 2)
+      );
+      const den = Math.sqrt(2 * Math.PI) * desviacionEstandar;
+      return num / den;
+    });
+  };
+
   let desviacionEstandar = desviacionEst(data);
-  console.log(desviacionEstandar);
+  let resultados = normDist(arr, media, desviacionEstandar);
 
   return (
     <div>
