@@ -18,32 +18,58 @@ function ExcelExport({ muestra, data, header }) {
   };
 
   const handleGenerateClick = () => {
-    // Generar datos aleatorios usando el código que te proporcioné antes
+    // Generar datos aleatorios de la muestra
     const N = data.length;
     let segment;
     N >= 10000 ? (segment = 10) : N < 100 ? (segment = 2) : (segment = 4);
-    const n = muestra;
 
     const randomData = [];
     const segmentSize = Math.ceil(N / segment);
-    let remainingSamples = n;
+    let remainingSamples = muestra;
+
+    const divideArray = (array, parts) => {
+      const length = array.length;
+      const partSize = Math.floor(length / parts);
+      const result = [];
+      let startIndex = 0;
+
+      for (let i = 0; i < parts; i++) {
+        let endIndex = startIndex + partSize;
+        if (i === parts - 1) {
+          endIndex = length;
+        }
+        result.push(array.slice(startIndex, endIndex));
+        startIndex = endIndex;
+      }
+      return result;
+    };
+
+    const fragmentArray = divideArray(data, segment);
 
     for (let i = 0; i < segment; i++) {
-      let segmentSamples = Math.min(remainingSamples, segmentSize);
-      const segmentStart = i * segmentSize;
-      const segmentEnd = Math.min((i + 1) * segmentSize, N);
-      const randomIndices = new Set();
-      while (randomIndices.size < segmentSamples) {
-        const randomIndex = Math.floor(
-          Math.random() * (segmentEnd - segmentStart) + segmentStart
-        );
-        randomIndices.add(randomIndex);
+      const segmentData = fragmentArray[i];
+      const segmentSize = segmentData.length;
+      const segmentSamples = Math.round((segmentSize / N) * muestra);
+      const segmentRandomData = [];
+
+      for (let j = 0; j < segmentSamples; j++) {
+        const randomIndex = Math.floor(Math.random() * segmentSize);
+        segmentRandomData.push(segmentData[randomIndex]);
       }
-      randomIndices.forEach((index) => randomData.push(data[index]));
+
+      randomData.push(...segmentRandomData);
       remainingSamples -= segmentSamples;
-      if (remainingSamples <= 0) {
-        break;
+    }
+
+    if (remainingSamples > 0) {
+      for (let i = 0; i < remainingSamples; i++) {
+        const randomIndex = Math.floor(Math.random() * N);
+        randomData.push(data[randomIndex]);
       }
+    }
+
+    if (randomData.length > muestra) {
+      randomData.splice(muestra);
     }
 
     console.log(randomData);

@@ -9,6 +9,7 @@ function Mas({ dataArray }) {
     nombre: "",
     apellido: "",
     correo: "",
+    auditoria: "",
     TamanoPoblacion: dataArray.length - 1, //Tamaño del Universo/Población
     NivelDeConfianza: "",
     ProbabilidadDeExito: "",
@@ -61,6 +62,15 @@ function Mas({ dataArray }) {
             type="email"
             value={mas.correo}
             name="correo"
+            onChange={onChange}
+          />
+        </label>
+        <label>
+          Auditoria:
+          <input
+            type="text"
+            value={mas.auditoria}
+            name="auditoria"
             onChange={onChange}
           />
         </label>

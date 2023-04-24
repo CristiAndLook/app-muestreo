@@ -89,6 +89,7 @@ const TechnicalMas = (mas) => {
           Nombre: {mas.nombre} {mas.apellido}{" "}
         </p>
         <p>Correo: {mas.correo}</p>
+        <p>Auditoria: {mas.auditoria}</p>
         <p>Tamaño de la Población: {N}</p>
         <p>Nivel de Confianza: {mas.NivelDeConfianza}</p>
         <p>Probabilidad de Éxito: {mas.ProbabilidadDeExito}</p>
