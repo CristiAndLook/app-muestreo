@@ -1,11 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import TechnicalMas from "../FichaTecnica/TechnicalMas";
-import GraphMas from "../Graficas/GraphMas";
 
 function Mas({ dataArray }) {
   const [hasData, setHasData] = useState(false);
-  
+
   const [mas, setMas] = useState({
     nombre: "",
     apellido: "",
@@ -24,11 +23,10 @@ function Mas({ dataArray }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     // Aquí podrías hacer alguna validación o manipulación de los datos antes de enviarlos al componente.
     mas.NivelDeConfianza = Number(mas.NivelDeConfianza);
     mas.ProbabilidadDeExito = Number(mas.ProbabilidadDeExito); //P
-    mas.ProbabilidadDeFallo = (1 - mas.ProbabilidadDeExito / 100) * 100; // Q
+    mas.ProbabilidadDeFallo = 0; // Q
     mas.ErrorDeEstimacion = Number(mas.ErrorDeEstimacion); //e
 
     // Luego los enviamos al componente Data como propiedades}
@@ -95,7 +93,6 @@ function Mas({ dataArray }) {
         </label>
         <button type="submit">Obtener Muestra</button>
       </form>
-      <div>{hasData && <GraphMas {...mas} />}</div>
       <div>{hasData && <TechnicalMas {...mas} />}</div>
     </section>
   );

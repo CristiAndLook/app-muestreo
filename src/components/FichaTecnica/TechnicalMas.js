@@ -1,13 +1,18 @@
-import React from "react";
+import ExcelExport from "../services/ExcelExport";
 
 const TechnicalMas = (mas) => {
+  //Variables estadísticas
+  //Redondear hacia arriba
+  let ProbabilidadDeFallo = (mas.ProbabilidadDeExito - 100) * -1; // Q
+
+  //Variables de fecha
   const fechaActual = new Date();
   const dia = fechaActual.getDate();
   const mes = fechaActual.getMonth() + 1; // Los meses en JS empiezan en 0
   const anio = fechaActual.getFullYear();
 
   //calcular la función de distribución acumulativa normal estándar inversa
-  //Esta funcion deberiamos pasar a un contexto global para que pueda ser usada por otros componentes
+  //Esta funcion deberiamos pasarla a un contexto global para que pueda ser usada por otros componentes
   function NormSInv(p) {
     var a1 = -39.6968302866538,
       a2 = 220.946098424521,
@@ -62,7 +67,7 @@ const TechnicalMas = (mas) => {
   //Variables estadísticas
   let N = mas.TamanoPoblacion;
   let P = mas.ProbabilidadDeExito / 100;
-  let Q = mas.ProbabilidadDeFallo / 100;
+  let Q = ProbabilidadDeFallo / 100;
   let e = mas.ErrorDeEstimacion / 100;
 
   //Hallamos Z
@@ -76,17 +81,22 @@ const TechnicalMas = (mas) => {
   return (
     <div>
       <h2>Technical Mas</h2>
-      <p>Fecha: {`${dia}/${mes}/${anio}`}</p>
-      <p>Diseño Muestral: Muestra Aleatoria Simple</p>
-      <p>
-        Nombre: {mas.nombre} {mas.apellido}{" "}
-      </p>
-      <p>Tamaño de la Población: {N}</p>
-      <p>Nivel de Confianza: {mas.NivelDeConfianza}</p>
-      <p>Probabilidad de Éxito: {mas.ProbabilidadDeExito}</p>
-      <p>Probabilidad de Fallo: {mas.ProbabilidadDeFallo}</p>
-      <p>Error de Estimación: {mas.ErrorDeEstimacion}</p>
-      <p>Tamaño de la Muestra: {n}</p>
+      <section>
+        <p>Fecha: {`${dia}/${mes}/${anio}`}</p>
+        <p>Diseño Muestral: Muestra Aleatoria Simple</p>
+        <p>
+          Nombre: {mas.nombre} {mas.apellido}{" "}
+        </p>
+        <p>Correo: {mas.correo}</p>
+        <p>Tamaño de la Población: {N}</p>
+        <p>Nivel de Confianza: {mas.NivelDeConfianza}</p>
+        <p>Probabilidad de Éxito: {mas.ProbabilidadDeExito}</p>
+        <p>Probabilidad de Fallo: {ProbabilidadDeFallo}</p>
+        <p>Error de Estimación: {mas.ErrorDeEstimacion}</p>
+        <p>Tamaño de la Muestra: {n}</p>
+      </section>
+      <section>Gráfica</section>
+      <ExcelExport />
     </div>
   );
 };
