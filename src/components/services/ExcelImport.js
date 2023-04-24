@@ -1,11 +1,9 @@
 import { useState } from "react";
-
 import * as XLSX from "xlsx";
 
 export default function ExcelDropZone() {
   const [file, setFile] = useState(null);
   const [hasFile, setHasFile] = useState(false);
-  
 
   const handleDrop = (event) => {
     event.preventDefault();
