@@ -4,6 +4,7 @@ const TechnicalMas = (mas) => {
   //Variables estadísticas
   //Redondear hacia arriba
   let ProbabilidadDeFallo = (mas.ProbabilidadDeExito - 100) * -1; // Q
+  let ProbabilidadDeExito = mas.ProbabilidadDeExito; // P
 
   //Variables de fecha
   const fechaActual = new Date();
@@ -80,7 +81,7 @@ const TechnicalMas = (mas) => {
 
   return (
     <div>
-      <h2>Technical Mas</h2>
+      <h2>Ficha Técnica Mas</h2>
       <section>
         <p>Fecha: {`${dia}/${mes}/${anio}`}</p>
         <p>Diseño Muestral: Muestra Aleatoria Simple</p>
@@ -95,8 +96,9 @@ const TechnicalMas = (mas) => {
         <p>Error de Estimación: {mas.ErrorDeEstimacion}</p>
         <p>Tamaño de la Muestra: {n}</p>
       </section>
+      {/* TODO: Gráfica */}
       <section>Gráfica</section>
-      <ExcelExport />
+      <ExcelExport muestra={n} data={mas.data} header={mas.data[0]} />
     </div>
   );
 };
