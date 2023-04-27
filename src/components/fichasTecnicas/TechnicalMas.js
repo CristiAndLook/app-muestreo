@@ -175,7 +175,7 @@ const TechnicalMas = (mas) => {
       </section>
       {/* TODO: Gráfica */}
       <section>
-        <GraphMas mas={mas} />
+        <GraphMas mas={mas} graphIndexes={graphIndexes} />
       </section>
       <section>
         <button onClick={handleGenerateClick}>Generar datos aleatorios</button>

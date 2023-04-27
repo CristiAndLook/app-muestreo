@@ -1,7 +1,32 @@
-const GraphMas = ({ mas }) => {
-  //Tamano del array
-  const arraySize = mas.data;
-  console.log(arraySize);
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
+
+const GraphMas = ({ mas, graphIndexes }) => {
+  //Tamaño del array
+  const arraySize = mas.data.length - 1;
+  //Array de labels
+  const labels = Array.from({ length: arraySize }, (_, i) => i + 1);
   //Nuevo Array de 1 a n
   const arr = Array.from({ length: arraySize }, (_, i) => i + 1);
   //Data
@@ -29,14 +54,71 @@ const GraphMas = ({ mas }) => {
   };
 
   let desviacionEstandar = desviacionEst(data);
-  let resultados = normDist(arr, media, desviacionEstandar);
-  console.log(resultados);
+  let resultadosA = normDist(arr, media, desviacionEstandar);
 
-  return (
-    <div>
-      <h2>GraphMas</h2>
-    </div>
-  );
+  let arrayA = graphIndexes;
+  let arrayB = resultadosA;
+  let resultadosB = Array(arrayB.length).fill(0);
+
+  for (let i = 0; i < arrayA.length; i++) {
+    let index = arrayA[i];
+    if (index >= 0 && index < arrayB.length) {
+      resultadosB[index] = arrayB[index];
+    }
+  }
+
+  console.log(resultadosB);
+
+  //Gráfica
+  const datos = {
+    labels,
+    datasets: [
+      {
+        label: "Dataset 1",
+        data: resultadosA,
+        tension: 0.5,
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+      {
+        label: "Dataset 2",
+        data: resultadosB,
+        tension: 0.75,
+        fill: false,
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Campana de Gauss",
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Variable aleatoria",
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Probabilidad",
+        },
+      },
+    },
+  };
+
+  return <Line options={options} data={datos} />;
 };
 
 export default GraphMas;
