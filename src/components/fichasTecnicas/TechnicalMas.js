@@ -1,10 +1,23 @@
-import ExcelExport from "../services/ExcelExport";
+import { useState } from "react";
+import * as XLSX from "xlsx";
+import GraphMas from "../graficas/GraphMas";
+
+const exportToExcel = (ranData, headerExcel) => {
+  ranData.unshift(headerExcel);
+
+  const worksheet = XLSX.utils.json_to_sheet(ranData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Muestra");
+  XLSX.writeFile(workbook, ".muestra-aleatoria-simple.xlsx");
+};
 
 const TechnicalMas = (mas) => {
+  //Data recibida lista para exportar
+  const [ranData, setRanData] = useState([]);
+  const [graphIndexes, setGraphIndexes] = useState([]);
   //Variables estadísticas
   //Redondear hacia arriba
   let ProbabilidadDeFallo = (mas.ProbabilidadDeExito - 100) * -1; // Q
-  let ProbabilidadDeExito = mas.ProbabilidadDeExito; // P
 
   //Variables de fecha
   const fechaActual = new Date();
@@ -79,6 +92,69 @@ const TechnicalMas = (mas) => {
   //Hallamos n Tamaño de la muestra
   let n = Math.ceil((N * Z ** 2 * P * Q) / ((N - 1) * e ** 2 + Z ** 2 * P * Q)); //Tamaño de la muestra
 
+  const handleGenerateClick = () => {
+    // Divide el array en partes iguales
+    const indexesArray = (array, muestra) => {
+      // Constantes y variables necesarias
+      const newArray = array.slice(1); // Copia del array original
+
+      const length = newArray.length; // Número de elementos del array
+      let indexes = []; // Array que contendrá los índices aleatorios
+      let startIndex = 0;
+      let parts; // Número de segmentos en los que se dividirá el array
+      length >= 10000
+        ? (parts = 10)
+        : length <= 100
+        ? (parts = 2)
+        : (parts = 4); // Si length es mayor o igual a 10000, segment = 10, si length es menor a 100, segment = 2, si no, segment = 4
+      // Tamaño de la muestra dividido entre el número de segmentos(oartes)
+      let splitSample;
+
+      muestra % parts === 0
+        ? (splitSample = muestra / parts)
+        : (splitSample = Math.floor(muestra / parts));
+      const partSize = Math.floor(length / parts); // Tamaño de cada parte
+
+      const count = splitSample;
+      // For para dividir el array en partes iguales
+      for (let i = 0; i < parts; i++) {
+        //Ejemplo: con un array de 20 elementos y 2 partes
+        let endIndex = startIndex + partSize; // endIndex = 10
+        if (i === parts - 1) {
+          // Si i = 1
+          endIndex = length; // endIndex = 20
+          splitSample = muestra; // splitSample = 20
+        }
+
+        while (indexes.length < splitSample) {
+          let randomIndex = Math.floor(
+            Math.random() * (endIndex - startIndex + 1) + startIndex
+          );
+
+          if (indexes.indexOf(randomIndex) === -1) {
+            indexes.push(randomIndex);
+          }
+        }
+        splitSample += count;
+        startIndex = endIndex; // startIndex = 10
+      }
+      // ordenar los indices aleatorios
+      indexes.sort((a, b) => a - b);
+      return indexes; //Un array con los índices aleatorios
+    };
+    const indexes = indexesArray(mas.data, n);
+    console.log(indexes);
+    const dataRandom = indexes.map((index) => mas.data[index]);
+    setRanData(dataRandom);
+    setGraphIndexes(indexes);
+  };
+
+  //Exportar a Excel
+  const headerExcel = mas.data[0]; //Encabezado de la tabla
+  const handleExportClick = () => {
+    exportToExcel(ranData, headerExcel); //Llamamos a la función exportToExcel
+  };
+
   return (
     <div>
       <h2>Ficha Técnica Mas</h2>
@@ -89,7 +165,7 @@ const TechnicalMas = (mas) => {
           Nombre: {mas.nombre} {mas.apellido}{" "}
         </p>
         <p>Correo: {mas.correo}</p>
-        <p>Auditoria: {mas.auditoria}</p>
+        <p>Tipo de auditoria: {mas.auditoria}</p>
         <p>Tamaño de la Población: {N}</p>
         <p>Nivel de Confianza: {mas.NivelDeConfianza}</p>
         <p>Probabilidad de Éxito: {mas.ProbabilidadDeExito}</p>
@@ -98,8 +174,13 @@ const TechnicalMas = (mas) => {
         <p>Tamaño de la Muestra: {n}</p>
       </section>
       {/* TODO: Gráfica */}
-      <section>Gráfica</section>
-      <ExcelExport muestra={n} data={mas.data} header={mas.data[0]} />
+      <section>
+        <GraphMas mas={mas} />
+      </section>
+      <section>
+        <button onClick={handleGenerateClick}>Generar datos aleatorios</button>
+        <button onClick={handleExportClick}>Exportar a Excel</button>
+      </section>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import TechnicalMas from "../FichaTecnica/TechnicalMas";
+import TechnicalMas from "../fichasTecnicas/TechnicalMas";
 
 function Mas({ dataArray }) {
   const [hasData, setHasData] = useState(false);

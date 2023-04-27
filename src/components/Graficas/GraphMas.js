@@ -1,9 +1,7 @@
-import { useRef, useEffect } from "react";
-import * as d3 from "d3";
-
-const GraphMas = (mas) => {
+const GraphMas = ({ mas }) => {
   //Tamano del array
-  const arraySize = mas.data.length - 1;
+  const arraySize = mas.data;
+  console.log(arraySize);
   //Nuevo Array de 1 a n
   const arr = Array.from({ length: arraySize }, (_, i) => i + 1);
   //Data
@@ -34,46 +32,9 @@ const GraphMas = (mas) => {
   let resultados = normDist(arr, media, desviacionEstandar);
   console.log(resultados);
 
-  //Gráfica
-  const svgRef = useRef();
-
-  useEffect(() => {
-    // Aquí irá el código para dibujar la gráfica
-    const svg = d3.select(svgRef.current);
-
-    const width = 500;
-    const height = 300;
-    const margin = 50;
-
-    // Escala para el eje X
-    const xScale = d3
-      .scaleLinear()
-      .domain([1, arraySize])
-      .range([margin, width - margin]);
-
-    // Escala para el eje Y
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, d3.max(resultados)])
-      .range([height - margin, margin]);
-
-    svg.attr("width", width).attr("height", height);
-
-    svg
-      .selectAll("circle")
-      .data(resultados)
-      .enter()
-      .append("circle")
-      .attr("cx", (d, i) => xScale(i + 1))
-      .attr("cy", (d) => yScale(d))
-      .attr("r", 3)
-      .attr("fill", "#EE2B7B");
-  }, []);
-
   return (
     <div>
       <h2>GraphMas</h2>
-      <svg ref={svgRef}></svg>
     </div>
   );
 };

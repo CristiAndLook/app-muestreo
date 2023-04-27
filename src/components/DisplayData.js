@@ -1,10 +1,10 @@
 import { useState } from "react";
 import * as XLSX from "xlsx";
-import Mas from "./Muestras/Mas";
-import EstimadoresMas from "./Muestras/EstimadoresMas";
-import Mpe from "./Muestras/Mpe";
-import EstimadoresMpe from "./Muestras/EstimadoresMpe";
-import NoOption from "./Muestras/NoOption";
+import Mas from "./muestras/Mas";
+import EstimadoresMas from "./muestras/EstimadoresMas";
+import Mpe from "./muestras/Mpe";
+import EstimadoresMpe from "./muestras/EstimadoresMpe";
+import NoOption from "./muestras/NoOption";
 
 const DisplayData = () => {
   //Carga de archivo
@@ -69,11 +69,11 @@ const DisplayData = () => {
   } else if (select.seleccion === "mas") {
     componente = <Mas dataArray={dataArray} />;
   } else if (select.seleccion === "emas") {
-    componente = <EstimadoresMas />;
+    componente = <EstimadoresMas dataArray={dataArray} />;
   } else if (select.seleccion === "mpe") {
-    componente = <Mpe />;
+    componente = <Mpe dataArray={dataArray} />;
   } else if (select.seleccion === "empe") {
-    componente = <EstimadoresMpe />;
+    componente = <EstimadoresMpe dataArray={dataArray} />;
   }
 
   return (
