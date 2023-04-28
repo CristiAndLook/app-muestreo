@@ -10,7 +10,7 @@ function Mas({ dataArray }) {
     apellido: "",
     correo: "",
     auditoria: "",
-    TamanoPoblacion: dataArray.length - 1, //Tamaño del Universo/Población
+    TamanoPoblacion: dataArray.length - 1, //Tamaño del Universo/Población(N)
     NivelDeConfianza: "",
     ProbabilidadDeExito: "",
     ErrorDeEstimacion: "",
