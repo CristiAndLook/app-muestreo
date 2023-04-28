@@ -118,7 +118,7 @@ function Mas({ dataArray }) {
           </div>
         </div>
 
-        <button className="btn btn-secondary m-2" type="submit">
+        <button className="btn btn-secondary m-2 mb-5 mt-5" type="submit">
           Obtener muestra
         </button>
       </form>

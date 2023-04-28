@@ -23,8 +23,6 @@ function App() {
       <section>
         <DisplayData />
       </section>
-
-      <Footer />
     </div>
   );
 }

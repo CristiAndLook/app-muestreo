@@ -190,7 +190,10 @@ const TechnicalMas = (mas) => {
         </section>
 
         <section className="d-flex flex-column">
-          <button className="btn btn-secondary" onClick={handleExportClick}>
+          <button
+            className="btn btn-secondary mb-4"
+            onClick={handleExportClick}
+          >
             Exportar en formato Excel
           </button>
         </section>
