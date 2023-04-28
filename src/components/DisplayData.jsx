@@ -89,25 +89,25 @@ const DisplayData = () => {
             onChange={handleDrop}
             style={{ display: "none" }}
           />
-          <button onClick={handleButtonClick}>
-            Pulse o arrastre aquí para cargar un archivo
-          </button>
-          {hasFile && <p>Archivo {file.name} cargado con éxito </p>}
+          <div className="d-grid gap-2 p-2" >
+            <button onClick={handleButtonClick} className="btn btn-lg btn-primary m-4 mb-1" type="button">Pulse o arrastre aquí para cargar un archivo</button>
+          </div>
+          {hasFile && <p className="text-center">Archivo {file.name} cargado con éxito </p>}
         </div>
       </section>
-
-      <section>
+    <section className="container">
         <select
+          className="form-select-sm"
           id="seleccion"
           name="seleccion"
           value={select.seleccion}
           onChange={handleChange}
         >
-          <option value="">Seleccione que le gustaria hacer</option>
-          <option value="mas">Muestra Aleatoria Simple</option>
-          <option value="emas">Estimadores de Muestra Aleatoria Simple</option>
-          <option value="mpe">Muestra por Estrato</option>
-          <option value="empe">Estimadores de Muestra por Estrato</option>
+          <option className="nav-link dropdown-toggle" value="">Seleccione que le gustaría hacer</option>
+          <option className="nav-link dropdown-toggle" value="mas">Muestra Aleatoria Simple</option>
+          <option className="nav-link dropdown-toggle" value="emas">Estimadores de Muestra Aleatoria Simple</option>
+          <option className="nav-link dropdown-toggle" value="mpe">Muestra por Estrato</option>
+          <option className="nav-link dropdown-toggle" value="empe">Estimadores de Muestra por Estrato</option>
         </select>
 
         {componente}

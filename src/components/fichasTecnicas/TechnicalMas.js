@@ -157,30 +157,44 @@ const TechnicalMas = (mas) => {
 
   return (
     <div>
-      <h2>Ficha Técnica Mas</h2>
-      <section>
-        <p>Fecha: {`${dia}/${mes}/${anio}`}</p>
-        <p>Diseño Muestral: Muestra Aleatoria Simple</p>
-        <p>
-          Nombre: {mas.nombre} {mas.apellido}{" "}
-        </p>
-        <p>Correo: {mas.correo}</p>
-        <p>Tipo de auditoria: {mas.auditoria}</p>
-        <p>Tamaño de la Población: {N}</p>
-        <p>Nivel de Confianza: {mas.NivelDeConfianza}</p>
-        <p>Probabilidad de Éxito: {mas.ProbabilidadDeExito}</p>
-        <p>Probabilidad de Fallo: {ProbabilidadDeFallo}</p>
-        <p>Error de Estimación: {mas.ErrorDeEstimacion}</p>
-        <p>Tamaño de la Muestra: {n}</p>
-      </section>
-      {/* TODO: Gráfica */}
-      <section>
-        <GraphMas mas={mas} graphIndexes={graphIndexes} />
-      </section>
-      <section>
-        <button onClick={handleGenerateClick}>Generar datos aleatorios</button>
-        <button onClick={handleExportClick}>Exportar a Excel</button>
-      </section>
+      <h2 className="text-center m-4 mt-5">Ficha técnica MAS</h2>
+      <div>
+        <section className="d-flex flex-row justi justify-content-around card border-secondary mb-5 m-2 p-2">
+          <div className="mt-5">
+            <p>Fecha: {`${dia}/${mes}/${anio}`}</p>
+            <p>Diseño muestral: Muestra Aleatoria Simple</p>
+            <p>
+              Nombre: {mas.nombre} {mas.apellido}{" "}
+            </p>
+            <p>Correo: {mas.correo}</p>
+            <p>Tipo de auditoria: {mas.auditoria}</p>
+            <p>Tamaño de la población: {N}</p>
+            <p>Nivel de confianza: {mas.NivelDeConfianza}</p>
+            <p>Probabilidad de éxito: {mas.ProbabilidadDeExito}</p>
+            <p>Probabilidad de fallo: {ProbabilidadDeFallo}</p>
+            <p>Error de estimación: {mas.ErrorDeEstimacion}</p>
+            <p>Tamaño de la muestra: {n}</p>
+          </div>
+          <div
+            className="d-flex flex-column justify-content-around "
+            style={{ width: "66%" }}
+          >
+            <button
+              className="btn btn-secondary m-5"
+              onClick={handleGenerateClick}
+            >
+              Generar datos aleatorios
+            </button>
+            <GraphMas mas={mas} graphIndexes={graphIndexes} />
+          </div>
+        </section>
+
+        <section className="d-flex flex-column">
+          <button className="btn btn-secondary" onClick={handleExportClick}>
+            Exportar en formato Excel
+          </button>
+        </section>
+      </div>
     </div>
   );
 };

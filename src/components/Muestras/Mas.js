@@ -37,72 +37,92 @@ function Mas({ dataArray }) {
 
   return (
     <section>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Nombre:
-          <input
-            type="text"
-            value={mas.nombre}
-            name="nombre"
-            onChange={onChange}
-          />
-        </label>
-        <label>
-          Apellido:
-          <input
-            type="text"
-            value={mas.apellido}
-            name="apellido"
-            onChange={onChange}
-          />
-        </label>
-        <label>
-          Correo:
-          <input
-            type="email"
-            value={mas.correo}
-            name="correo"
-            onChange={onChange}
-          />
-        </label>
-        <label>
-          Auditoria:
-          <input
-            type="text"
-            value={mas.auditoria}
-            name="auditoria"
-            onChange={onChange}
-          />
-        </label>
-        <label>
-          Nivel de Confianza:
-          <input
-            type="number"
-            value={mas.NivelDeConfianza}
-            name="NivelDeConfianza"
-            onChange={onChange}
-          />
-        </label>
-        <label>
-          Probabilidad de Éxito:
-          <input
-            type="number"
-            value={mas.ProbabilidadDeExito}
-            name="ProbabilidadDeExito"
-            onChange={onChange}
-          />
-        </label>
-        <label>
-          Error de Estimación:
-          <input
-            type="number"
-            value={mas.ErrorDeEstimacion}
-            name="ErrorDeEstimacion"
-            onChange={onChange}
-          />
-        </label>
-        <button type="submit">Obtener Muestra</button>
+      <form
+        className="form-select-sm d-flex flex-column"
+        onSubmit={handleSubmit}
+      >
+        <div className="d-flex flex-row justify-content-around">
+          <div className="d-flex flex-column ml-5">
+            <label className="form-label mt-1">
+              Nombre:
+              <input
+                className="form-control"
+                type="text"
+                value={mas.nombre}
+                name="nombre"
+                onChange={onChange}
+              />
+            </label>
+            <label className="form-label mt-1">
+              Apellido:
+              <input
+                className="form-control"
+                type="text"
+                value={mas.apellido}
+                name="apellido"
+                onChange={onChange}
+              />
+            </label>
+            <label className="form-label mt-1">
+              Correo:
+              <input
+                className="form-control"
+                type="email"
+                value={mas.correo}
+                name="correo"
+                onChange={onChange}
+              />
+            </label>
+            <label className="form-label mt-1">
+              Nombre de la auditoria:
+              <input
+                className="form-control"
+                type="text"
+                value={mas.auditoria}
+                name="auditoria"
+                onChange={onChange}
+              />
+            </label>
+          </div>
+          <div className="d-flex flex-column mr-5">
+            <label className="form-label mt-1">
+              Nivel de confianza:
+              <input
+                className="form-control"
+                type="number"
+                value={mas.NivelDeConfianza}
+                name="NivelDeConfianza"
+                onChange={onChange}
+              />
+            </label>
+            <label className="form-label mt-1">
+              Probabilidad de éxito:
+              <input
+                className="form-control"
+                type="number"
+                value={mas.ProbabilidadDeExito}
+                name="ProbabilidadDeExito"
+                onChange={onChange}
+              />
+            </label>
+            <label className="form-label mt-1">
+              Error de estimación:
+              <input
+                className="form-control"
+                type="number"
+                value={mas.ErrorDeEstimacion}
+                name="ErrorDeEstimacion"
+                onChange={onChange}
+              />
+            </label>
+          </div>
+        </div>
+
+        <button className="btn btn-secondary m-2" type="submit">
+          Obtener muestra
+        </button>
       </form>
+
       <div>{hasData && <TechnicalMas {...mas} />}</div>
     </section>
   );

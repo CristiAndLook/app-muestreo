@@ -74,14 +74,14 @@ const GraphMas = ({ mas, graphIndexes }) => {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
+        label: "Datos originales (N)",
         data: resultadosA,
         tension: 0.5,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
-        label: "Dataset 2",
+        label: "Muestra (n)",
         data: resultadosB,
         tension: 0.75,
         fill: false,
@@ -99,20 +99,20 @@ const GraphMas = ({ mas, graphIndexes }) => {
       },
       title: {
         display: true,
-        text: "Campana de Gauss",
+        text: "Distribución de los datos",
       },
     },
     scales: {
       x: {
         title: {
           display: true,
-          text: "Variable aleatoria",
+          text: "Índices",
         },
       },
       y: {
         title: {
           display: true,
-          text: "Probabilidad",
+          text: "Distribución",
         },
       },
     },

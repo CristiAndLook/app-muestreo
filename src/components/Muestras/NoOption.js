@@ -1,7 +1,5 @@
-import React from "react";
-
 const NoOption = () => {
-  return <div>NoOption</div>;
+  return <div className="m-5">Selecciona una opción</div>;
 };
 
 export default NoOption;
