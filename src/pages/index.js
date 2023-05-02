@@ -2,6 +2,9 @@ import DisplayData from "@/components/DisplayData.jsx";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Head from "next/head";
+// #EE2B7B Color Magenta comfama 
+// #D9D9D9 Color Gris comfama
+
 
 function App() {
   return (
