@@ -181,6 +181,7 @@ const TechnicalMas = (mas) => {
           >
             <button
               className="btn btn-secondary m-5"
+              style={{ background: "#EE2B7B", color: "white" }}
               onClick={handleGenerateClick}
             >
               Generar datos aleatorios
@@ -192,6 +193,7 @@ const TechnicalMas = (mas) => {
         <section className="d-flex flex-column">
           <button
             className="btn btn-secondary mb-4"
+            style={{ background: "#EE2B7B", color: "white" }}
             onClick={handleExportClick}
           >
             Exportar en formato Excel

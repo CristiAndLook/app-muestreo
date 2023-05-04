@@ -106,7 +106,7 @@ function Mas({ dataArray }) {
               />
             </label>
             <label className="form-label mt-1">
-              Error de estimación:
+              Margen de Error:
               <input
                 className="form-control"
                 type="number"
@@ -118,7 +118,11 @@ function Mas({ dataArray }) {
           </div>
         </div>
 
-        <button className="btn btn-secondary m-2 mb-5 mt-5" type="submit">
+        <button
+          className="btn btn-secondary m-2 mb-5 mt-5"
+          style={{ background: "#EE2B7B", color: "white" }}
+          type="submit"
+        >
           Obtener muestra
         </button>
       </form>

@@ -90,7 +90,7 @@ const DisplayData = () => {
             style={{ display: "none" }}
           />
           <div className="d-grid gap-2 p-2" >
-            <button onClick={handleButtonClick} className="btn btn-lg btn-primary m-4 mb-1" type="button" style={{background: '#D9D9D9'}}>Pulse o arrastre aquí para cargar un archivo</button>
+            <button onClick={handleButtonClick} className="btn btn-lg btn-primary m-4 mb-1" type="button" style={{background: '#D9D9D9', color: 'black'}}>Pulse o arrastre aquí para cargar un archivo</button>
           </div>
           {hasFile && <p className="text-center">Archivo {file.name} cargado con éxito </p>}
         </div>
