@@ -1,6 +1,13 @@
+import Header from "@/components/Header";
+import PageLayout from "@/components/PageLayout";
+
 function index() {
+
   return (
-    <div>Documentación</div>
+    <>
+      <Header />
+      <PageLayout/>
+    </>
   )
 }
 
