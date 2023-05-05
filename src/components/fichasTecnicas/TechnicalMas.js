@@ -169,10 +169,10 @@ const TechnicalMas = (mas) => {
             <p>Correo: {mas.correo}</p>
             <p>Tipo de auditoria: {mas.auditoria}</p>
             <p>Tamaño de la población: {N}</p>
-            <p>Nivel de confianza: {mas.NivelDeConfianza}</p>
-            <p>Probabilidad de éxito: {mas.ProbabilidadDeExito}</p>
-            <p>Probabilidad de fallo: {ProbabilidadDeFallo}</p>
-            <p>Error de estimación: {mas.ErrorDeEstimacion}</p>
+            <p>Nivel de confianza: {mas.NivelDeConfianza}%</p>
+            <p>Probabilidad de éxito: {mas.ProbabilidadDeExito}%</p>
+            <p>Probabilidad de fallo: {ProbabilidadDeFallo}%</p>
+            <p>Error de estimación: {mas.ErrorDeEstimacion}%</p>
             <p>Tamaño de la muestra: {n}</p>
           </div>
           <div
