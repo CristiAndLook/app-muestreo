@@ -11,7 +11,7 @@ function App() {
       <Head>
         <title>Generador de Muestras</title>
         <meta name="description" content="Generador de Muestras" />
-        <link rel="icon" href="/letter-c.png" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
